@@ -1,0 +1,121 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Ubuntu Nerd Font";
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 0;
+}
+
+window#waybar {
+    background: #1c1c1c;
+    color: #CDD6F4;
+}
+
+#custom-vpn,
+#bluetooth,
+#network,
+#pulseaudio,
+#battery,
+#custom-settings,
+#clock {
+    padding: 0 6px;
+}
+
+#workspaces button {
+    padding: 0 6px;
+    color: #6c7086;
+}
+
+#workspaces button.active {
+    color: #b4befe;
+}
+
+#workspaces button.visible {
+    color: #89dceb;
+}
+
+#workspaces button.empty {
+    color: rgba(108, 112, 134, 0.5);
+}
+
+#workspaces button:hover {
+    color: #cdd6f4;
+}
+
+#custom-spotify {
+    color: #cba6f7;
+}
+
+#network.wifi {
+    color: #94e2d5;
+}
+
+#network.disconnected,
+#network.disabled {
+    color: #f38ba8;
+}
+
+#bluetooth {
+    color: #89b4fa;
+}
+
+#bluetooth.connected {
+    color: #ad89fa;
+}
+
+#bluetooth.disabled,
+#bluetooth.off {
+    color: #7f849c;
+}
+
+#custom-vpn {
+    color: #f5e0dc;
+}
+
+#pulseaudio {
+    color: #89b4fa;
+}
+
+#pulseaudio.muted {
+    color: #7f849c;
+}
+
+#battery {
+    color: #a6e3a1;
+}
+
+#battery.warning {
+    color: #f9e2af;
+}
+
+#battery.critical {
+    color: #f38ba8;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #94e2d5;
+}
+
+#custom-settings {
+    color: #cdd6f4;
+}
+
+#custom-settings:hover {
+    color: #b4befe;
+}
+
+#clock {
+    color: #74c7ec;
+}
+
+tooltip {
+    background: #181825;
+    border: 1px solid #45475a;
+    border-radius: 10px;
+}
+
+tooltip label {
+    color: #cdd6f4;
+}

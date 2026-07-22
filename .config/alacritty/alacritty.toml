@@ -1,0 +1,56 @@
+[window]
+padding = { x = 4, y = 4 }
+opacity = 0.95
+
+[env]
+TERM = "alacritty"
+
+[colors.primary]
+background = '#0A0A0A'
+foreground = '#F8F8F2'
+
+[colors.cursor]
+text = 'CellBackground'
+
+[colors.selection]
+text = '#F8F8F2'
+background = '#4A9EF1'
+
+[colors.normal]
+black = '#0D0D0D'
+red = '#FF4757'
+green = '#4ADF86'
+yellow = '#FF8C42'
+blue = '#4A9EF1'
+magenta = '#BD93F9'
+cyan = '#4A9EF1'
+white = '#BBBBBB'
+
+[colors.bright]
+black = '#888888'
+red = '#FF6B6B'
+green = '#51FA7B'
+yellow = '#FFD93D'
+blue = '#6DB3F2'
+magenta = '#C78BFF'
+cyan = '#8BE9FD'
+white = '#F8F8F2'
+
+[colors.dim]
+black = '#0A0A0A'
+red = '#CC3A41'
+green = '#2BB656'
+yellow = '#A6810D'
+blue = '#3F7CAC'
+magenta = '#8E44AD'
+cyan = '#16A085'
+white = '#888888'
+
+[font]
+size = 11
+normal = { family = "monospace", style = "Regular" }
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
