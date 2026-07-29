@@ -2,7 +2,10 @@
 set -euo pipefail
 
 menu() {
-    wofi --dmenu --insensitive --matching fuzzy --prompt "$1" --width 520 --lines 6 --cache-file /dev/null
+    read -r x y < <(hyprctl cursorpos | tr , ' ')
+    read -r w < <(hyprctl monitors -j | jq -r '.[] | select(.focused).width' 2>/dev/null || echo 1920)
+    x=$(( x + 10 > w - 520 ? w - 530 : x < 10 ? 10 : x + 10 ))
+    wofi --dmenu --insensitive --matching fuzzy --prompt "$1" --width 520 --lines 6 --cache-file /dev/null --location 0 --xoffset "$x" --yoffset 30
 }
 
 notify() {
