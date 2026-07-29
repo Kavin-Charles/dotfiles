@@ -17,7 +17,6 @@ window#waybar {
 #network,
 #pulseaudio,
 #battery,
-#custom-settings,
 #clock {
     padding: 0 6px;
 }
@@ -96,14 +95,6 @@ window#waybar {
 #battery.charging,
 #battery.plugged {
     color: #94e2d5;
-}
-
-#custom-settings {
-    color: #cdd6f4;
-}
-
-#custom-settings:hover {
-    color: #b4befe;
 }
 
 #clock {

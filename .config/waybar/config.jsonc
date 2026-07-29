@@ -4,7 +4,7 @@
   "reload_style_on_change": true,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["custom/spotify"],
-  "modules-right": ["network", "bluetooth", "custom/vpn", "pulseaudio", "battery", "custom/settings", "clock"],
+  "modules-right": ["network", "bluetooth", "custom/vpn", "pulseaudio", "battery", "clock"],
 
   "hyprland/workspaces": {
     "disable-scroll": true,
@@ -50,7 +50,7 @@
     "tooltip-format-ethernet": "{ifname} {ipaddr}",
     "tooltip-format-disconnected": "Disconnected",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "on-click": "$HOME/bin/waybar-tray-menu.sh"
+    "on-click": "$HOME/bin/ags-toggle.sh network-drawer"
   },
 
   "bluetooth": {
@@ -61,19 +61,20 @@
     "tooltip-format": "Bluetooth on",
     "tooltip-format-connected": "{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}",
-    "on-click": "$HOME/bin/waybar-tray-menu.sh"
+    "on-click": "$HOME/bin/ags-toggle.sh bluetooth-drawer"
   },
 
   "custom/vpn": {
-    "format": "",
+    "format": "{}",
     "interval": 1,
     "exec": "$HOME/bin/waybar-vpn.sh",
-    "on-click": "$HOME/bin/waybar-tray-menu.sh"
+    "on-click": "$HOME/bin/ags-toggle.sh network-drawer",
+    "tooltip": false
   },
 
   "pulseaudio": {
     "scroll-step": 2,
-    "on-click": "$HOME/bin/waybar-tray-menu.sh",
+    "on-click": "$HOME/bin/ags-toggle.sh audio-drawer",
     "format": "{icon}",
     "format-muted": "󰝟",
     "tooltip-format": "{desc} {volume}%",
@@ -92,15 +93,7 @@
     "format-plugged": "󰂄",
     "tooltip-format": "{timeTo}",
     "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-    "on-click": "$HOME/bin/waybar-tray-menu.sh"
-  },
-
-  "custom/settings": {
-    "format": "{}",
-    "interval": 3600,
-    "exec": "echo '󰒓  '",
-    "on-click": "$HOME/bin/waybar-tray-menu.sh",
-    "tooltip": false
+    "on-click": "$HOME/bin/ags-toggle.sh battery-drawer"
   },
 
   "clock": {
@@ -118,6 +111,6 @@
       "on-scroll-up": "shift_up",
       "on-scroll-down": "shift_down"
     },
-    "on-click": "$HOME/bin/waybar-tray-menu.sh"
+    "on-click": "$HOME/bin/ags-toggle.sh calendar-drawer"
   }
 }
