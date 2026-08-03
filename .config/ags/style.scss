@@ -1,0 +1,64 @@
+* {
+  all: unset;
+  font-family: "Ubuntu Nerd Font";
+  font-size: 13px;
+}
+
+window.Drawer {
+  background: transparent;
+}
+
+window.Drawer > box {
+  margin: 8px;
+  padding: 12px;
+  min-width: 280px;
+  border: 1px solid #45475a;
+  border-radius: 12px;
+  background: #1c1c1c;
+  color: #cdd6f4;
+}
+
+.drawer-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #89b4fa;
+  margin-bottom: 8px;
+}
+
+.drawer-item {
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.drawer-item:hover {
+  background: #313244;
+}
+
+.drawer-label {
+  color: #cdd6f4;
+}
+
+.drawer-icon {
+  margin-right: 8px;
+}
+
+button {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #313244;
+  color: #cdd6f4;
+}
+
+button:hover {
+  background: #45475a;
+}
+
+button.danger:hover {
+  background: #f38ba8;
+  color: #1c1c1c;
+}
+
+button.primary:hover {
+  background: #89b4fa;
+  color: #1c1c1c;
+}
