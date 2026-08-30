@@ -8,6 +8,33 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   {
+    "razcoen/fleet.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("fleet").setup({
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = true,
+        strikethrough = true,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        invert_indent_guides = false,
+        inverse = true,
+        contrast = "hard",
+        palette_overrides = {},
+        overrides = {
+          Normal = { bg = "#000000" },
+        },
+        dim_inactive = false,
+        transparent_mode = false,
+      })
+      vim.cmd.colorscheme("fleet")
+    end,
+  },
+  {
     "mason-org/mason.nvim",
     opts = {},
   },

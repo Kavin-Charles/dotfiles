@@ -1,6 +1,7 @@
 import app from "ags/gtk4/app"
 import { Astal, Gtk } from "ags/gtk4"
 import GLib from "gi://GLib"
+import Gio from "gi://Gio"
 
 const { CENTER } = Astal.WindowAnchor
 
@@ -12,9 +13,6 @@ const SHOW_MS = 1200
 let fadeTimer: number | null = null
 let autoHideTimer: number | null = null
 let lastWidth = 0
-let lastContent = ""
-let lastType = ""
-let lastValue = -1
 
 let iconRef: Gtk.Label | null = null
 let barRef: Gtk.Box | null = null
@@ -25,7 +23,7 @@ function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t
 }
 
-function updateOSD(type: string, value: number) {
+function showOsd(type: string, value: number) {
   if (!barRef || !iconRef || !percentRef || !winRef) return
 
   const clamped = Math.min(100, Math.max(0, value))
@@ -69,30 +67,6 @@ function updateOSD(type: string, value: number) {
   })
 }
 
-function startPoller() {
-  GLib.timeout_add(GLib.PRIORITY_DEFAULT, 80, () => {
-    try {
-      const [ok, content] = GLib.file_get_contents("/tmp/ags-osd")
-      if (!ok || !content) return true
-      const text = new TextDecoder().decode(content).trim()
-      if (!text || text === lastContent) return true
-      lastContent = text
-
-      const parts = text.split(" ")
-      if (parts.length < 2) return true
-      const type = parts[0]
-      const value = parseInt(parts[1])
-      if (isNaN(value)) return true
-      if (type === lastType && value === lastValue) return true
-      lastType = type
-      lastValue = value
-
-      updateOSD(type, value)
-    } catch {}
-    return true
-  })
-}
-
 export default function OsdDrawer(gdkmonitor: any) {
   const win = (
     <window
@@ -105,7 +79,6 @@ export default function OsdDrawer(gdkmonitor: any) {
       margin-bottom={120}
       visible={false}
       application={app}
-      $={() => { startPoller() }}
     >
       <box cssName="osd-box">
         <label cssName="osd-icon" label="" $={(self) => { iconRef = self }} />
@@ -119,3 +92,45 @@ export default function OsdDrawer(gdkmonitor: any) {
 
   return win
 }
+
+// Start socket server for OSD commands
+const SOCKET_PATH = "/tmp/ags-osd.sock"
+try { GLib.unlink(SOCKET_PATH) } catch {}
+
+const socket = Gio.Socket.new(Gio.SocketFamily.UNIX, Gio.SocketType.DATAGRAM, 0)
+socket.bind(Gio.UnixSocketAddress.new(SOCKET_PATH), true)
+
+const source = socket.create_source(GLib.IOCondition.IN, null)
+source.set_callback((_s: any, _fd: any, _condition: any) => {
+  try {
+    const [, addr, , data] = socket.receive_from(1024, null)
+    const text = new TextDecoder().decode(data).trim()
+    const parts = text.split(" ")
+    if (parts.length >= 2) {
+      const type = parts[0]
+      const value = parseInt(parts[1])
+      if (!isNaN(value)) showOsd(type, value)
+    }
+  } catch {}
+  return true
+})
+source.attach(GLib.MainContext.default())
+
+// Also keep file-based polling as fallback
+let lastContent = ""
+GLib.timeout_add(GLib.PRIORITY_DEFAULT, 80, () => {
+  try {
+    const [ok, content] = GLib.file_get_contents("/tmp/ags-osd")
+    if (!ok || !content) return true
+    const text = new TextDecoder().decode(content).trim()
+    if (!text || text === lastContent) return true
+    lastContent = text
+    const parts = text.split(" ")
+    if (parts.length >= 2) {
+      const type = parts[0]
+      const value = parseInt(parts[1])
+      if (!isNaN(value)) showOsd(type, value)
+    }
+  } catch {}
+  return true
+})
