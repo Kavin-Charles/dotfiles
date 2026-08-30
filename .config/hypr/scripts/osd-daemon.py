@@ -2,21 +2,20 @@
 import gi
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
-from gi.repository import Gtk, Adw, GLib, Gdk
-import signal, sys
+gi.require_version('Gtk4LayerShell', '1.0')
+from gi.repository import Gtk, Adw, GLib, Gdk, Gtk4LayerShell
 
 icon_label = None
 bar_inner = None
 percent_label = None
 window = None
-app = None
 
 last_width = 0
 target_width = 0
-current_opacity = 1.0
 hide_timer_id = None
 lerp_timer_id = None
 fade_timer_id = None
+current_opacity = 1.0
 
 MAX_BAR = 200
 LERP_FACTOR = 0.18
@@ -108,83 +107,84 @@ def poll_file():
     return True
 
 
+CSS = b"""
+.osd-box {
+    background: #1c1c1c;
+    border: 1px solid #45475a;
+    border-radius: 12px;
+    padding: 10px 16px;
+}
+.osd-icon {
+    font-size: 22px;
+    color: #89b4fa;
+    font-family: "Ubuntu Nerd Font";
+    min-width: 30px;
+}
+.osd-bar-outer {
+    min-width: 200px;
+    min-height: 8px;
+    background: #313244;
+    border-radius: 4px;
+    margin: 6px 0;
+}
+.osd-bar-inner {
+    min-height: 8px;
+    min-width: 0px;
+    background: #89b4fa;
+    border-radius: 4px;
+}
+.osd-percent {
+    font-size: 14px;
+    font-weight: bold;
+    color: #cdd6f4;
+    font-family: "Ubuntu Nerd Font";
+    min-width: 40px;
+}
+"""
+
+
 def build_ui(a):
     global window, icon_label, bar_inner, percent_label
 
     css = Gtk.CssProvider()
-    css.load_from_data(b"""
-        window { background: transparent; }
-        .osd-box {
-            background: #1c1c1c;
-            border: 1px solid #45475a;
-            border-radius: 12px;
-            padding: 10px 16px;
-            min-width: 300px;
-        }
-        .osd-icon {
-            font-size: 22px;
-            color: #89b4fa;
-            font-family: "Ubuntu Nerd Font";
-            min-width: 30px;
-        }
-        .osd-bar-outer {
-            min-width: 200px;
-            min-height: 8px;
-            background: #313244;
-            border-radius: 4px;
-            margin: 6px 0;
-        }
-        .osd-bar-inner {
-            min-height: 8px;
-            min-width: 0px;
-            background: #89b4fa;
-            border-radius: 4px;
-        }
-        .osd-percent {
-            font-size: 14px;
-            font-weight: bold;
-            color: #cdd6f4;
-            font-family: "Ubuntu Nerd Font";
-            min-width: 40px;
-        }
-    """)
+    css.load_from_data(CSS)
     Gtk.StyleContext.add_provider_for_display(
         Gdk.Display.get_default(), css, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
     )
 
-    window = Gtk.ApplicationWindow(application=a)
+    window = Gtk.Window(application=a)
+
+    Gtk4LayerShell.init_for_window(window)
+    Gtk4LayerShell.set_layer(window, Gtk4LayerShell.Layer.OVERLAY)
+    Gtk4LayerShell.set_keyboard_mode(window, Gtk4LayerShell.KeyboardMode.NONE)
+    Gtk4LayerShell.set_exclusive_zone(window, -1)
+
+    anchor = (Gtk4LayerShell.Edge.BOTTOM, True)
+    Gtk4LayerShell.set_anchor(window, anchor[0], anchor[1])
+
     window.set_decorated(False)
-    window.set_resizable(False)
     window.set_opacity(0)
     window.set_visible(False)
 
     box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
-    box.get_style_context().add_class('osd-box')
+    box.add_css_class('osd-box')
 
     icon_label = Gtk.Label()
-    icon_label.get_style_context().add_class('osd-icon')
+    icon_label.add_css_class('osd-icon')
     box.append(icon_label)
 
     bar_outer = Gtk.Box()
-    bar_outer.get_style_context().add_class('osd-bar-outer')
+    bar_outer.add_css_class('osd-bar-outer')
     bar_inner = Gtk.Box()
-    bar_inner.get_style_context().add_class('osd-bar-inner')
+    bar_inner.add_css_class('osd-bar-inner')
     bar_outer.append(bar_inner)
     box.append(bar_outer)
 
     percent_label = Gtk.Label()
-    percent_label.get_style_context().add_class('osd-percent')
+    percent_label.add_css_class('osd-percent')
     box.append(percent_label)
 
     window.set_child(box)
-    window.set_size_request(320, 50)
-
-    display = Gdk.Display.get_default()
-    monitor = display.get_monitors().get_item(0)
-    geom = monitor.get_geometry()
-    x = geom.x + (geom.width - 320) // 2
-    y = geom.y + geom.height - 160
-    window.move(x, y)
 
     window.present()
 
