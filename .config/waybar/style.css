@@ -2,7 +2,7 @@
     border: none;
     border-radius: 0;
     font-family: "Ubuntu Nerd Font";
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     min-height: 0;
 }
@@ -12,7 +12,6 @@ window#waybar {
     color: #CDD6F4;
 }
 
-#custom-vpn,
 #bluetooth,
 #network,
 #pulseaudio,
@@ -42,10 +41,6 @@ window#waybar {
     color: #cdd6f4;
 }
 
-#custom-spotify {
-    color: #cba6f7;
-}
-
 #network.wifi {
     color: #94e2d5;
 }
@@ -66,10 +61,6 @@ window#waybar {
 #bluetooth.disabled,
 #bluetooth.off {
     color: #7f849c;
-}
-
-#custom-vpn {
-    color: #f5e0dc;
 }
 
 #pulseaudio {

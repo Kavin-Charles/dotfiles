@@ -17,7 +17,7 @@ export default function AudioDrawer(gdkmonitor: any) {
       margin-top={30}
       visible={false}
       application={app}
-      setup={(self) => {
+      $={(self) => {
         self.connect("notify::is-active", () => {
           if (!self.isActive && self.visible) {
             if (GLib.file_test("/tmp/ags-drawer-lock", GLib.FileTest.EXISTS)) return

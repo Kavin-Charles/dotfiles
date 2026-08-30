@@ -1,0 +1,31 @@
+background = 0A0A0A
+foreground = F8F8F2
+cursor-color = F8F8F2
+selection-background = 4A9EF1
+selection-foreground = F8F8F2
+
+background-opacity = 0.95
+
+font-family = monospace
+font-size = 12
+bold-is-bright = true
+
+# Normal palette
+palette = 0=#0D0D0D
+palette = 1=#FF4757
+palette = 2=#4ADF86
+palette = 3=#FF8C42
+palette = 4=#4A9EF1
+palette = 5=#BD93F9
+palette = 6=#4A9EF1
+palette = 7=#BBBBBB
+
+# Bright palette
+palette = 8=#888888
+palette = 9=#FF6B6B
+palette = 10=#51FA7B
+palette = 11=#FFD93D
+palette = 12=#6DB3F2
+palette = 13=#C78BFF
+palette = 14=#8BE9FD
+palette = 15=#F8F8F2

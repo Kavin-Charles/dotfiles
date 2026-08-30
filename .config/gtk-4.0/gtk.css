@@ -1,0 +1,114 @@
+/* Thunar Catppuccin Mocha — black transparent theme (GTK4) */
+thunar {
+    background-color: #000000;
+    background-image: none;
+}
+
+thunar .view,
+thunar .sidebar,
+thunar .path-bar,
+thunar .toolbar,
+thunar .statusbar {
+    background-color: #000000;
+    background-image: none;
+}
+
+thunar treeview,
+thunar listview,
+thunar iconview {
+    background-color: #000000;
+    background-image: none;
+    color: #cdd6f4;
+}
+
+thunar treeview:selected,
+thunar listview:selected,
+thunar iconview:selected {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+}
+
+thunar headerbar {
+    background-color: #000000;
+    border: none;
+    color: #cdd6f4;
+}
+
+thunar headerbar button {
+    background-color: #000000;
+    color: #cdd6f4;
+    border: 1px solid #313244;
+}
+
+thunar headerbar button:hover {
+    background-color: #1e1e2e;
+    border-color: #4a9ef1;
+}
+
+thunar .sidebar {
+    background-color: #000000;
+}
+
+thunar .sidebar row {
+    background-color: #000000;
+    color: #b4befe;
+}
+
+thunar .sidebar row:hover {
+    background-color: #1e1e2e;
+}
+
+thunar .sidebar row:selected {
+    background-color: #313244;
+    color: #4a9ef1;
+}
+
+thunar .path-bar button {
+    background-color: #000000;
+    color: #b4befe;
+    border: 1px solid #313244;
+}
+
+thunar .path-bar button:hover {
+    background-color: #1e1e2e;
+    border-color: #4a9ef1;
+}
+
+thunar .statusbar {
+    background-color: #000000;
+    color: #6c7086;
+    border-top: 1px solid #313244;
+}
+
+thunar scrollbar slider {
+    background-color: #313244;
+    border-radius: 4px;
+}
+
+thunar scrollbar slider:hover {
+    background-color: #4a9ef1;
+}
+
+thunar menu {
+    background-color: #1e1e2e;
+    border: 1px solid #313244;
+}
+
+thunar menuitem {
+    color: #cdd6f4;
+}
+
+thunar menuitem:hover {
+    background-color: #313244;
+}
+
+thunar window {
+    background-color: rgba(0, 0, 0, 0.92);
+}
+
+thunar .view:focus,
+thunar treeview:focus,
+thunar listview:focus {
+    outline: 1px solid #4a9ef1;
+    outline-offset: -1px;
+}
