@@ -61,6 +61,8 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("snappy-switcher --daemon -c /home/kavin/.config/snappy-switcher/config.ini")
   hl.exec_cmd("/usr/lib/gnome-keyring-daemon --start --components=secrets,ssh,pkcs11")
   hl.exec_cmd("qs -c tray")
+  hl.exec_cmd("sh -c 'mkfifo /tmp/wob-volume 2>/dev/null; tail -f /tmp/wob-volume | wob --config /home/kavin/.config/wob/wob.ini'")
+  hl.exec_cmd("sh -c 'mkfifo /tmp/wob-brightness 2>/dev/null; tail -f /tmp/wob-brightness | wob --config /home/kavin/.config/wob/wob.ini'")
 end)
 
 

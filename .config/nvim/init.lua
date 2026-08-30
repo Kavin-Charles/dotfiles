@@ -176,6 +176,76 @@ require("lazy").setup({
     end,
   },
   {
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    },
+    config = function()
+      local telescope = require("telescope")
+      local actions = require("telescope.actions")
+
+      telescope.setup({
+        defaults = {
+          prompt_prefix = " > ",
+          selection_caret = "  ",
+          entry_prefix = "  ",
+          initial_mode = "insert",
+          selection_strategy = "reset",
+          sorting_strategy = "descending",
+          layout_strategy = "horizontal",
+          layout_config = {
+            horizontal = {
+              prompt_position = "top",
+              preview_width = 0.55,
+            },
+            width = 0.87,
+            height = 0.80,
+            preview_cutoff = 120,
+          },
+          file_ignore_patterns = { "node_modules", ".git/", "target/" },
+          path_display = { "truncate" },
+          mappings = {
+            i = {
+              ["<C-j>"] = actions.move_selection_next,
+              ["<C-k>"] = actions.move_selection_previous,
+              ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+              ["<Esc>"] = actions.close,
+            },
+          },
+        },
+        pickers = {
+          find_files = {
+            theme = "dropdown",
+            previewer = false,
+          },
+          live_grep = {
+            theme = "ivy",
+          },
+          buffers = {
+            theme = "dropdown",
+            previewer = false,
+            initial_mode = "normal",
+          },
+        },
+      })
+
+      telescope.load_extension("fzf")
+
+      local map = vim.keymap.set
+      map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
+      map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Live grep" })
+      map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Buffers" })
+      map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help tags" })
+      map("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Recent files" })
+      map("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", { desc = "Diagnostics" })
+      map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Document symbols" })
+      map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Git commits" })
+      map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Git status" })
+    end,
+  },
+  {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
