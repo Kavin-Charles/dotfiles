@@ -62,3 +62,44 @@ button.primary:hover {
   background: #89b4fa;
   color: #1c1c1c;
 }
+
+window.OSD {
+  background: transparent;
+}
+
+.osd-box {
+  margin: 8px;
+  padding: 10px 16px;
+  min-width: 300px;
+  border: 1px solid #45475a;
+  border-radius: 12px;
+  background: #1c1c1c;
+  color: #cdd6f4;
+  spacing: 12px;
+}
+
+.osd-icon {
+  font-size: 22px;
+  color: #89b4fa;
+  min-width: 30px;
+}
+
+.osd-bar-outer {
+  min-width: 200px;
+  min-height: 8px;
+  background: #313244;
+  border-radius: 4px;
+}
+
+.osd-bar-inner {
+  min-height: 8px;
+  background: #89b4fa;
+  border-radius: 4px;
+}
+
+.osd-percent {
+  font-size: 14px;
+  font-weight: bold;
+  color: #cdd6f4;
+  min-width: 40px;
+}
