@@ -270,8 +270,8 @@ hl.bind(mainMod .. " + D",      hl.dsp.exec_cmd("/home/kavin/.config/hypr/script
 -- Window management
 hl.bind(mainMod .. " + P",      hl.dsp.window.pseudo())       -- dwindle pseudo
 hl.bind(mainMod .. " + J",      hl.dsp.layout("togglesplit")) -- dwindle toggle split
-hl.bind("ALT + space",           hl.dsp.exec_cmd("nc -U /run/user/1000/walker/walker.sock"))        -- app launcher (walker) - socket call for faster open
-hl.bind(mainMod .. " + space",   hl.dsp.exec_cmd("nc -U /run/user/1000/walker/walker.sock"))        -- app launcher (walker) - socket call for faster open
+hl.bind("ALT + space",           hl.dsp.exec_cmd(menu))        -- app launcher (walker)
+hl.bind(mainMod .. " + space",   hl.dsp.exec_cmd(menu))        -- app launcher (walker)
 hl.bind(mainMod .. " + TAB",    hl.dsp.exec_cmd("hyprctl dispatch swapwithmaster")) -- swap with master
 
 -- Move focus with mainMod + HJKL (vim-style)

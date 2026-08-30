@@ -6,7 +6,6 @@ import BluetoothDrawer from "./drawers/BluetoothDrawer"
 import AudioDrawer from "./drawers/AudioDrawer"
 import BatteryDrawer from "./drawers/BatteryDrawer"
 import CalendarDrawer from "./drawers/CalendarDrawer"
-import OsdDrawer from "./drawers/OsdDrawer"
 
 app.start({
   css: style,
@@ -18,7 +17,6 @@ app.start({
       AudioDrawer(m)
       BatteryDrawer(m)
       CalendarDrawer(m)
-      OsdDrawer(m)
     })
   },
 })

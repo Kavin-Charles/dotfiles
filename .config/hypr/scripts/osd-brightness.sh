@@ -6,4 +6,4 @@ esac
 max=$(brightnessctl max)
 cur=$(brightnessctl get)
 pct=$(( cur * 100 / max ))
-ags request "brightness $pct"
+echo "brightness $pct" > /tmp/ags-osd

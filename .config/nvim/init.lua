@@ -1,5 +1,25 @@
 vim.g.mapleader = " "
 
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.wrap = false
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.cursorline = true
+vim.opt.termguicolors = true
+vim.opt.signcolumn = "yes"
+vim.opt.scrolloff = 8
+vim.opt.updatetime = 250
+vim.opt.clipboard = "unnamedplus"
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP Definition" })
+vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "LSP References" })
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP Code Action" })
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", "https://github.com/folke/lazy.nvim.git", lazypath })
@@ -158,12 +178,56 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
     config = function()
       require("nvim-treesitter").setup({
         ensure_installed = { "go", "gomod", "lua", "vim", "vimdoc", "javascript", "typescript", "python", "rust", "json", "yaml", "bash", "c", "cpp" },
         auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "<C-space>",
+            node_incremental = "<C-space>",
+            scope_incremental = false,
+            node_decremental = "<bs>",
+          },
+        },
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.inner",
+            },
+          },
+          move = {
+            enable = true,
+            set_jumps = true,
+            goto_next_start = {
+              ["]f"] = "@function.outer",
+              ["]c"] = "@class.outer",
+            },
+            goto_next_end = {
+              ["]F"] = "@function.outer",
+              ["]C"] = "@class.outer",
+            },
+            goto_previous_start = {
+              ["[f"] = "@function.outer",
+              ["[c"] = "@class.outer",
+            },
+            goto_previous_end = {
+              ["[F"] = "@function.outer",
+              ["[C"] = "@class.outer",
+            },
+          },
+        },
       })
     end,
   },
