@@ -39,58 +39,39 @@ require("lazy").setup({
       "mason-org/mason-lspconfig.nvim",
     },
     config = function()
-      local lspconfig = require("lspconfig")
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-      local servers = {
-        bashls = {},
-        clangd = {},
-        cssls = {},
-        gopls = {
-          settings = {
-            gopls = {
-              gofumpt = true,
-              codelenses = { generate = true, test = true, tidy = true },
-              hints = {
-                assignVariableTypes = true,
-                compositeLiteralFields = true,
-                parameterNames = true,
-                rangeVariableTypes = true,
-              },
-              analyses = {
-                nilness = true,
-                unusedparams = true,
-                unusedwrite = true,
-                useany = true,
-              },
-              usePlaceholders = true,
-              completeUnimported = true,
-              staticcheck = true,
+      vim.lsp.config("gopls", {
+        settings = {
+          gopls = {
+            gofumpt = true,
+            codelenses = { generate = true, test = true, tidy = true },
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
             },
+            analyses = {
+              nilness = true,
+              unusedparams = true,
+              unusedwrite = true,
+              useany = true,
+            },
+            usePlaceholders = true,
+            completeUnimported = true,
+            staticcheck = true,
           },
         },
-        html = {},
-        jsonls = {},
-        lua_ls = {
-          settings = {
-            Lua = {
-              workspace = { checkThirdParty = false },
-              telemetry = { enable = false },
-              diagnostics = { globals = { "vim" } },
-            },
+      })
+
+      vim.lsp.config("lua_ls", {
+        settings = {
+          Lua = {
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+            diagnostics = { globals = { "vim" } },
           },
         },
-        pyright = {},
-        rust_analyzer = {},
-        ts_ls = {},
-        vimls = {},
-        yamlls = {},
-      }
-
-      for server, opts in pairs(servers) do
-        opts.capabilities = capabilities
-        lspconfig[server].setup(opts)
-      end
+      })
     end,
   },
   {
@@ -151,7 +132,7 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.configs").setup({
+      require("nvim-treesitter").setup({
         ensure_installed = { "go", "gomod", "lua", "vim", "vimdoc", "javascript", "typescript", "python", "rust", "json", "yaml", "bash", "c", "cpp" },
         auto_install = true,
         highlight = { enable = true },
