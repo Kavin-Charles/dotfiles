@@ -1,7 +1,7 @@
 local function setup_brackets()
-  local pairs = { ["("] = ")", ["["] = "]", ["{"] = "}", ['"'] = '"', ["'"] = "'", ["`"] = "`" }
+  local bracket_pairs = { ["("] = ")", ["["] = "]", ["{"] = "}", ['"'] = '"', ["'"] = "'", ["`"] = "`" }
 
-  for open, close in pairs(pairs) do
+  for open, close in pairs(bracket_pairs) do
     vim.keymap.set("i", open, function()
       return open .. close .. "<Left>"
     end, { expr = true, desc = "Auto-close " .. open .. close })
@@ -12,7 +12,7 @@ local function setup_brackets()
     local col = vim.api.nvim_win_get_cursor(0)[2]
     local char_before = line:sub(col, col)
     local char_after = line:sub(col + 1, col + 1)
-    for open, close in pairs(pairs) do
+    for open, close in pairs(bracket_pairs) do
       if char_before == open and char_after == close then
         return "<Del><BS>"
       end
@@ -25,7 +25,7 @@ local function setup_brackets()
     local col = vim.api.nvim_win_get_cursor(0)[2]
     local char_before = line:sub(col, col)
     local char_after = line:sub(col + 1, col + 1)
-    for open, close in pairs(pairs) do
+    for open, close in pairs(bracket_pairs) do
       if char_before == open and char_after == close then
         return "<CR><CR><Esc>kA"
       end
@@ -35,6 +35,9 @@ local function setup_brackets()
 end
 
 setup_brackets()
+
+vim.opt.cursorline = true
+vim.cmd("hi CursorLine guibg=#0d0d0d")
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "go",
