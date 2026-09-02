@@ -49,7 +49,7 @@
     "tooltip-format-ethernet": "{ifname} {ipaddr}",
     "tooltip-format-disconnected": "Disconnected",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "on-click": "nm-connection-editor"
+    "on-click": "wlctl"
   },
 
   "bluetooth": {
@@ -60,7 +60,7 @@
     "tooltip-format": "Bluetooth on",
     "tooltip-format-connected": "{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}",
-    "on-click": "blueman-manager"
+    "on-click": "bluetui"
   },
 
   "pulseaudio": {
