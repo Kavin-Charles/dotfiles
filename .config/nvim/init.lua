@@ -115,7 +115,7 @@ require("lazy").setup({
         "vimls",
         "yamlls",
       },
-      automatic_enable = true,
+      automatic_enable = false,
     },
   },
   {
@@ -148,6 +148,7 @@ require("lazy").setup({
           },
         },
       })
+      vim.lsp.enable("gopls")
 
       vim.lsp.config("lua_ls", {
         settings = {
@@ -158,6 +159,14 @@ require("lazy").setup({
           },
         },
       })
+      vim.lsp.enable("lua_ls")
+
+      for _, server in ipairs({
+        "bashls", "clangd", "cssls", "html", "jsonls",
+        "pyright", "rust_analyzer", "ts_ls", "vimls", "yamlls",
+      }) do
+        vim.lsp.enable(server)
+      end
     end,
   },
   {
