@@ -80,6 +80,11 @@ hl.env("GDK_BACKEND", "wayland")
 hl.env("MOZ_ENABLE_WAYLAND", "1")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "mesa")
 
+-- Qt theming (Kvantum + qt5ct/qt6ct)
+hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
+hl.env("QT_STYLE_OVERRIDE", "kvantum")
+hl.env("QT_QTAUTOGEN_DISABLE", "1")
+
 
 -----------------------
 ----- PERMISSIONS -----
@@ -143,9 +148,15 @@ hl.config({
 
         blur = {
             enabled   = true,
-            size      = 3,
-            passes    = 1,
-            vibrancy  = 0.1696,
+            size      = 8,
+            passes    = 4,
+            vibrancy  = 0.3,
+            noise     = 0.02,
+            contrast  = 1.0,
+            brightness = 0.9,
+            new_optimizations = true,
+            xray      = false,
+            special   = true,
         },
     },
 
@@ -424,4 +435,12 @@ hl.window_rule({
 
     move  = "20 monitor_h-120",
     float = true,
+})
+
+-- Glass effect: translucent for Thunar (blur comes from global decoration settings)
+hl.window_rule({
+    name  = "thunar-glass",
+    match = { class = "thunar" },
+
+    opacity = "0.85 0.80",
 })
