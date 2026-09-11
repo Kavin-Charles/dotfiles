@@ -96,8 +96,8 @@ require("lazy").setup({
       local hl = vim.api.nvim_set_hl
       -- rose-pine main palette
       local rose  = "#ebbcba"
-      local pine   = "#31748f"
-      local foam   = "#9ccfd8"
+      local pine   = "#9ece6a"   -- changed from teal to green
+      local foam   = "#9ece6a"   -- changed from cyan to green
       local gold   = "#f6c177"
       local iris   = "#c4a7e7"
       local love   = "#eb6f92"
