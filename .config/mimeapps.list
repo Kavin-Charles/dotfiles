@@ -17,6 +17,7 @@ application/x-extension-xht=app.zen_browser.zen.desktop
 application/zip=org.kde.dolphin.desktop
 x-scheme-handler/about=app.zen_browser.zen.desktop
 x-scheme-handler/unknown=app.zen_browser.zen.desktop
+audio/x-mod=bssh.desktop
 
 [Added Associations]
 x-scheme-handler/http=app.zen_browser.zen.desktop;
@@ -24,3 +25,4 @@ x-scheme-handler/https=app.zen_browser.zen.desktop;
 x-scheme-handler/chrome=app.zen_browser.zen.desktop;
 application/zip=org.kde.dolphin.desktop;
 inode/directory=thunar.desktop;
+audio/x-mod=bssh.desktop;
