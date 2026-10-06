@@ -18,6 +18,7 @@ application/zip=org.kde.dolphin.desktop
 x-scheme-handler/about=app.zen_browser.zen.desktop
 x-scheme-handler/unknown=app.zen_browser.zen.desktop
 audio/x-mod=bssh.desktop
+x-scheme-handler/postman=Postman.desktop
 
 [Added Associations]
 x-scheme-handler/http=app.zen_browser.zen.desktop;
