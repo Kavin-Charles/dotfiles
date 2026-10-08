@@ -6,8 +6,8 @@ import GLib from "gi://GLib"
 const { TOP, RIGHT } = Astal.WindowAnchor
 
 export default function CalendarDrawer(gdkmonitor: any) {
-  const time = createPoll("", 1000, "date '+  %H:%M:%S'")
-  const date = createPoll("", 60000, "date '+  %A, %d %B %Y'")
+  const time = createPoll("", 60000, () => GLib.DateTime.new_now_local().format("%H:%M") ?? "")
+  const date = createPoll("", 60000, () => GLib.DateTime.new_now_local().format("%A, %d %B %Y") ?? "")
 
   return (
     <window

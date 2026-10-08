@@ -1,103 +1,74 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "Ubuntu Nerd Font";
-    font-size: 15px;
-    font-weight: 600;
     min-height: 0;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 window#waybar {
-    background: #1c1c1c;
-    color: #CDD6F4;
+    background: rgba(6, 5, 9, 0.78);
+    color: #eee6f7;
+    border-bottom: 1px solid #382447;
 }
 
-#bluetooth,
-#network,
-#pulseaudio,
-#battery,
-#clock {
-    padding: 0 6px;
+#workspaces {
+    margin-left: 8px;
 }
 
 #workspaces button {
-    padding: 0 6px;
-    color: #6c7086;
-}
-
-#workspaces button.active {
-    color: #b4befe;
-}
-
-#workspaces button.visible {
-    color: #89dceb;
+    padding: 0 9px;
+    margin: 4px 1px;
+    border-radius: 4px;
+    background: transparent;
+    color: #b9a5cc;
+    box-shadow: none;
+    text-shadow: none;
 }
 
 #workspaces button.empty {
-    color: rgba(108, 112, 134, 0.5);
+    color: #806b96;
 }
 
 #workspaces button:hover {
-    color: #cdd6f4;
+    background: #21162e;
+    color: #eee6f7;
 }
 
-#network.wifi {
-    color: #94e2d5;
+#workspaces button.active {
+    background: #53366e;
+    color: #eee6f7;
 }
 
-#network.disconnected,
-#network.disabled {
-    color: #f38ba8;
-}
-
-#bluetooth {
-    color: #89b4fa;
-}
-
-#bluetooth.connected {
-    color: #ad89fa;
-}
-
-#bluetooth.disabled,
-#bluetooth.off {
-    color: #7f849c;
-}
-
-#pulseaudio {
-    color: #89b4fa;
-}
-
-#pulseaudio.muted {
-    color: #7f849c;
-}
-
-#battery {
-    color: #a6e3a1;
-}
-
-#battery.warning {
-    color: #f9e2af;
-}
-
-#battery.critical {
-    color: #f38ba8;
-}
-
-#battery.charging,
-#battery.plugged {
-    color: #94e2d5;
+#workspaces button.urgent {
+    color: #ef9a9a;
 }
 
 #clock {
-    color: #74c7ec;
+    padding: 0 12px;
+}
+
+#battery {
+    padding: 0 14px;
+    color: #cbb1ff;
+}
+
+#battery.warning:not(.charging):not(.plugged) {
+    color: #e3c484;
+}
+
+#battery.critical:not(.charging):not(.plugged) {
+    color: #ef9a9a;
 }
 
 tooltip {
-    background: #181825;
-    border: 1px solid #45475a;
-    border-radius: 10px;
+    background: #100b17;
+    border: 1px solid #382447;
+    border-radius: 6px;
 }
 
 tooltip label {
-    color: #cdd6f4;
+    color: #eee6f7;
+    padding: 4px;
 }

@@ -1,0 +1,25 @@
+local map = vim.keymap.set
+map("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search" })
+map({ "n", "i", "v" }, "<C-s>", "<Esc><cmd>write<cr>", { desc = "Save file" })
+map("n", "<leader>w", "<cmd>write<cr>", { desc = "Save file" })
+map("n", "<leader>q", "<cmd>confirm quit<cr>", { desc = "Quit window" })
+map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
+map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+map("n", "<leader>bd", "<cmd>confirm bdelete<cr>", { desc = "Delete buffer" })
+for _, key in ipairs({ "h", "j", "k", "l" }) do
+  map("n", "<C-" .. key .. ">", "<C-w>" .. key, { desc = "Focus split " .. key })
+end
+map("n", "<leader>|", "<cmd>vsplit<cr>", { desc = "Vertical split" })
+map("n", "<leader>-", "<cmd>split<cr>", { desc = "Horizontal split" })
+map("v", "<", "<gv", { desc = "Indent left" })
+map("v", ">", ">gv", { desc = "Indent right" })
+map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line diagnostics" })
+map("n", "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", { desc = "LSP health" })
+map("n", "<leader>ut", function()
+  vim.g.obsidian_transparent = not vim.g.obsidian_transparent
+  vim.cmd.colorscheme("obsidian-purple")
+end, { desc = "Toggle transparency" })
+map("n", "<leader>ul", "<cmd>Lazy<cr>", { desc = "Plugin manager" })
+map("n", "<leader>um", "<cmd>Mason<cr>", { desc = "Language server manager" })
+map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Leave terminal mode" })
+map("n", "<leader>tt", function() vim.cmd("botright 12split | terminal") end, { desc = "Terminal" })

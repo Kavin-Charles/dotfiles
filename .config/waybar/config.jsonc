@@ -1,105 +1,47 @@
 {
   "layer": "top",
   "position": "top",
+  "height": 28,
+  "spacing": 0,
   "reload_style_on_change": true,
-  "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["custom/spotify", "clock"],
-  "modules-right": ["network", "bluetooth", "pulseaudio", "battery"],
-
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "battery"
+  ],
   "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
-    "format": "{icon}",
-    "persistent_workspaces": {
-      "1": [],
-      "2": [],
-      "3": [],
-      "4": [],
-      "5": []
-    },
-    "format-icons": {
-      "default": "",
-      "urgent": "",
-      "active": "",
-      "empty": ""
+    "format": "{id}",
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
     }
   },
-
-  "custom/spotify": {
-    "format": "<span foreground='#89B4FA'> </span>",
-    "interval": 1,
-    "exec-if": "pgrep spotify",
-    "on-click-middle": "playerctl -p spotify play-pause",
-    "on-scroll-up": "playerctl -p spotify previous",
-    "on-scroll-down": "playerctl -p spotify next",
-    "tooltip": false,
-    "escape": true,
-    "max-length": 60,
-    "exec": "$HOME/bin/spotify.sh"
+  "clock": {
+    "interval": 60,
+    "format": "{:%a, %d %b  \u00b7  %H:%M}",
+    "tooltip-format": "{:%A, %d %B %Y}"
   },
-
-  "network": {
-    "interval": 3,
-    "format-wifi": "{icon}",
-    "format-ethernet": "󰈀",
-    "format-linked": "󱘖",
-    "format-disconnected": "󰖪",
-    "format-disabled": "󰖪",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
-    "tooltip-format-ethernet": "{ifname} {ipaddr}",
-    "tooltip-format-disconnected": "Disconnected",
-    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "on-click": "wlctl"
-  },
-
-  "bluetooth": {
-    "format-on": "󰂯",
-    "format-off": "󰂲",
-    "format-disabled": "󰂲",
-    "format-connected": "󰂱",
-    "tooltip-format": "Bluetooth on",
-    "tooltip-format-connected": "{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}",
-    "on-click": "bluetui"
-  },
-
-  "pulseaudio": {
-    "scroll-step": 2,
-    "on-click": "pavucontrol",
-    "format": "{icon}",
-    "format-muted": "󰝟",
-    "tooltip-format": "{desc} {volume}%",
-    "format-icons": ["󰕿", "󰖀", "󰕾"]
-  },
-
   "battery": {
-    "interval": 10,
+    "interval": 30,
     "states": {
-      "good": 90,
       "warning": 30,
       "critical": 15
     },
-    "format": "{icon} {capacity}%",
-    "format-charging": "󰂄 {capacity}%",
-    "format-plugged": "󰂄 {capacity}%",
-    "tooltip-format": "{timeTo}",
-    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-  },
-
-  "clock": {
-    "interval": 1,
-    "format": "󰥔 {:%I:%M %p}",
-    "format-alt": "  {:%a, %d %b %Y}",
-    "tooltip-format": "<tt>{calendar}</tt>",
-    "calendar": {
-      "mode": "month",
-      "weeks-pos": "right",
-      "on-scroll": 1
-    },
-    "actions": {
-      "on-click-right": "mode",
-      "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down"
-    }
+    "format": "{capacity}%",
+    "format-charging": "{capacity}% <span size=\"small\">⚡︎</span>",
+    "format-plugged": "{capacity}%",
+    "format-full": "{capacity}%",
+    "tooltip-format": "{capacity}% \u00b7 {timeTo}"
   }
 }

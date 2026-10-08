@@ -1,0 +1,47 @@
+# Velocity Theme by perfektnacht; btop.theme
+
+theme[main_bg]="#09070d"
+theme[main_fg]="#eee6f7"
+theme[title]="#cbb1ff"
+theme[hi_fg]="#b58cff"
+theme[selected_bg]="#b58cff"
+theme[selected_fg]="#09070d"
+theme[inactive_fg]="#888888"
+theme[cpu_box]="#b58cff"
+theme[mem_box]="#4ADF86"
+theme[net_box]="#FF8C42"
+theme[proc_box]="#FF4757"
+theme[div_line]="#382447"
+
+# Gradient for all meters and graphs
+theme[temp_start]="#4ADF86"   # Success green (cool)
+theme[temp_mid]="#FF8C42"     # Warning orange (warm)  
+theme[temp_end]="#FF4757"     # Velocity red (hot)
+
+theme[cpu_start]="#4ADF86"    # Success green (low usage)
+theme[cpu_mid]="#FF8C42"      # Warning orange (medium)
+theme[cpu_end]="#FF4757"      # Velocity red (high usage)
+
+theme[free_start]="#4ADF86"   # Success green (lots of free memory)
+theme[free_mid]="#FF8C42"     # Warning orange (some free)
+theme[free_end]="#FF4757"     # Velocity red (low free memory)
+
+theme[cached_start]="#b58cff" # Steel blue (low cache)
+theme[cached_mid]="#cbb1ff"   # Neon cyan (medium cache)
+theme[cached_end]="#4ADF86"   # Success green (high cache - good!)
+
+theme[available_start]="#4ADF86" # Success green (high available)
+theme[available_mid]="#FF8C42"   # Warning orange (medium)
+theme[available_end]="#FF4757"   # Velocity red (low available)
+
+theme[used_start]="#4ADF86"   # Success green (low usage)
+theme[used_mid]="#FF8C42"     # Warning orange (medium)
+theme[used_end]="#FF4757"     # Velocity red (high usage)
+
+theme[download_start]="#b58cff" # Steel blue (low download)
+theme[download_mid]="#cbb1ff"   # Neon cyan (medium)
+theme[download_end]="#4ADF86"   # Success green (high download - good!)
+
+theme[upload_start]="#FF8C42"   # Warning orange (low upload)
+theme[upload_mid]="#FF4757"     # Velocity red (medium)
+theme[upload_end]="#FFD700"     # Gold (high upload - like victory!)

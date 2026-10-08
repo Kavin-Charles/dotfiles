@@ -39,7 +39,7 @@ hl.monitor({
 local terminal    = "ghostty"
 local fileManager = "thunar"
 local menu        = "walker"
-local browser     = "flatpak run app.zen_browser.zen"
+local browser     = "/home/kavin/.local/bin/zen-fast --window"
 
 
 -------------------
@@ -53,8 +53,11 @@ local browser     = "flatpak run app.zen_browser.zen"
 --
 hl.on("hyprland.start", function ()
   hl.exec_cmd("elephant")
-  hl.exec_cmd("swaybg -i /home/kavin/Downloads/wallpaper -m fill")
-  hl.exec_cmd("walker --gapplication-service")
+  -- Preload Zen out of sight so new browser windows can reuse the running process.
+  hl.exec_cmd("/home/kavin/.local/bin/zen-fast --preload")
+  hl.exec_cmd("swaybg -i /home/kavin/Pictures/wp-8k-sharp.png -m fill")
+  -- Use Intel OpenGL; Vulkan currently selects the secondary Nouveau GPU.
+  hl.exec_cmd("env GSK_RENDERER=gl walker --gapplication-service")
   hl.exec_cmd("waybar")
   hl.exec_cmd("ags run -d /home/kavin/.config/ags")
   hl.exec_cmd("nm-applet")
@@ -73,15 +76,17 @@ end)
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("AQ_DRM_DEVICES", "/dev/dri/card1:/dev/dri/card0")
+hl.env("AQ_DRM_DEVICES", "/dev/dri/intel-gpu:/dev/dri/nvidia-gpu")
 hl.env("LIBVA_DRIVER_NAME", "iHD")
 hl.env("VDPAU_DRIVER", "va_gl")
 hl.env("GDK_BACKEND", "wayland")
+-- GTK4 uses the Intel OpenGL path instead of waking the Nouveau GPU.
+hl.env("GSK_RENDERER", "gl")
 hl.env("MOZ_ENABLE_WAYLAND", "1")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "mesa")
 
 -- Qt theming (Kvantum + qt5ct/qt6ct)
-hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
+hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 hl.env("QT_STYLE_OVERRIDE", "kvantum")
 hl.env("QT_QTAUTOGEN_DISABLE", "1")
 
@@ -118,8 +123,8 @@ hl.config({
         border_size =1,
 
         col = {
-            active_border   = { colors = {"rgba(4A9EF1ff)", "rgba(00FFF0ff)"}, angle = 45 },
-            inactive_border = "rgba(2D2D30ff)",
+            active_border   = { colors = {"rgba(b58cffff)", "rgba(7546abff)"}, angle = 45 },
+            inactive_border = "rgba(382447cc)",
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -136,8 +141,8 @@ hl.config({
         rounding_power = 2,
 
         -- Change transparency of focused and unfocused windows
-        active_opacity   = 1.0,
-        inactive_opacity = 1.0,
+        active_opacity   = 0.94,
+        inactive_opacity = 0.90,
 
         shadow = {
             enabled      = true,
@@ -148,9 +153,9 @@ hl.config({
 
         blur = {
             enabled   = true,
-            size      = 8,
-            passes    = 4,
-            vibrancy  = 0.3,
+            size      = 5,
+            passes    = 2,
+            vibrancy  = 0.10,
             noise     = 0.02,
             contrast  = 1.0,
             brightness = 0.9,
@@ -272,7 +277,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))   -- terminal
 hl.bind(mainMod .. " + Q",      hl.dsp.window.close())        -- close window
 hl.bind(mainMod .. " + W",      hl.dsp.window.close())        -- close window (alt)
-hl.bind(mainMod .. " + B",      hl.dsp.exec_cmd(browser))     -- default browser
+hl.bind(mainMod .. " + B",      hl.dsp.exec_cmd(browser))     -- new browser window here
 hl.bind(mainMod .. " + M",      hl.dsp.exec_cmd("hyprctl dispatch exit")) -- exit hyprland
 hl.bind(mainMod .. " + E",      hl.dsp.exec_cmd(fileManager)) -- file manager
 hl.bind(mainMod .. " + R",      hl.dsp.exec_cmd(menu))        -- app launcher
@@ -442,5 +447,23 @@ hl.window_rule({
     name  = "thunar-glass",
     match = { class = "thunar" },
 
-    opacity = "0.85 0.80",
+    opacity = "0.90 0.86",
+})
+
+-- Obsidian Purple: native terminal alpha preserves crisp text.
+hl.window_rule({
+    name = "native-terminal-transparency",
+    match = { class = "^(com\\.mitchellh\\.ghostty|ghostty|kitty)$" },
+    opacity = "1.0 1.0",
+})
+hl.window_rule({
+    name = "opaque-fullscreen",
+    match = { fullscreen = true },
+    opacity = "1.0 1.0",
+})
+hl.layer_rule({
+    name = "obsidian-panel-blur",
+    match = { namespace = "^(walker|waybar|notifications|snappy-switcher)$" },
+    blur = true,
+    ignore_alpha = 0.15,
 })

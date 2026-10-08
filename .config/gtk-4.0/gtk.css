@@ -1,114 +1,50 @@
-/* Thunar Catppuccin Mocha — black transparent theme (GTK4) */
-thunar {
-    background-color: #000000;
-    background-image: none;
-}
+/* Obsidian Purple: shared GTK and libadwaita palette. */
+@define-color theme_bg_color #09070d;
+@define-color theme_fg_color #eee6f7;
+@define-color theme_base_color #060509;
+@define-color theme_text_color #eee6f7;
+@define-color theme_selected_bg_color #b58cff;
+@define-color theme_selected_fg_color #09070d;
+@define-color theme_unfocused_selected_bg_color #53366e;
+@define-color theme_unfocused_selected_fg_color #eee6f7;
+@define-color insensitive_fg_color #806b96;
+@define-color borders #382447;
+@define-color accent_color #b58cff;
+@define-color accent_bg_color #8d5acb;
+@define-color accent_fg_color #ffffff;
+@define-color window_bg_color #09070d;
+@define-color window_fg_color #eee6f7;
+@define-color view_bg_color #060509;
+@define-color view_fg_color #eee6f7;
+@define-color headerbar_bg_color #100b17;
+@define-color headerbar_fg_color #eee6f7;
+@define-color headerbar_backdrop_color #09070d;
+@define-color sidebar_bg_color #100b17;
+@define-color sidebar_fg_color #d8c9e9;
+@define-color sidebar_backdrop_color #09070d;
+@define-color card_bg_color #17101f;
+@define-color card_fg_color #eee6f7;
+@define-color popover_bg_color #17101f;
+@define-color popover_fg_color #eee6f7;
+@define-color dialog_bg_color #100b17;
+@define-color dialog_fg_color #eee6f7;
 
-thunar .view,
-thunar .sidebar,
-thunar .path-bar,
-thunar .toolbar,
-thunar .statusbar {
-    background-color: #000000;
-    background-image: none;
-}
-
-thunar treeview,
-thunar listview,
-thunar iconview {
-    background-color: #000000;
-    background-image: none;
-    color: #cdd6f4;
-}
-
-thunar treeview:selected,
-thunar listview:selected,
-thunar iconview:selected {
-    background-color: #1e1e2e;
-    color: #cdd6f4;
-}
-
-thunar headerbar {
-    background-color: #000000;
-    border: none;
-    color: #cdd6f4;
-}
-
-thunar headerbar button {
-    background-color: #000000;
-    color: #cdd6f4;
-    border: 1px solid #313244;
-}
-
-thunar headerbar button:hover {
-    background-color: #1e1e2e;
-    border-color: #4a9ef1;
-}
-
-thunar .sidebar {
-    background-color: #000000;
-}
-
-thunar .sidebar row {
-    background-color: #000000;
-    color: #b4befe;
-}
-
-thunar .sidebar row:hover {
-    background-color: #1e1e2e;
-}
-
-thunar .sidebar row:selected {
-    background-color: #313244;
-    color: #4a9ef1;
-}
-
-thunar .path-bar button {
-    background-color: #000000;
-    color: #b4befe;
-    border: 1px solid #313244;
-}
-
-thunar .path-bar button:hover {
-    background-color: #1e1e2e;
-    border-color: #4a9ef1;
-}
-
-thunar .statusbar {
-    background-color: #000000;
-    color: #6c7086;
-    border-top: 1px solid #313244;
-}
-
-thunar scrollbar slider {
-    background-color: #313244;
-    border-radius: 4px;
-}
-
-thunar scrollbar slider:hover {
-    background-color: #4a9ef1;
-}
-
-thunar menu {
-    background-color: #1e1e2e;
-    border: 1px solid #313244;
-}
-
-thunar menuitem {
-    color: #cdd6f4;
-}
-
-thunar menuitem:hover {
-    background-color: #313244;
-}
-
-thunar window {
-    background-color: rgba(0, 0, 0, 0.92);
-}
-
-thunar .view:focus,
-thunar treeview:focus,
-thunar listview:focus {
-    outline: 1px solid #4a9ef1;
-    outline-offset: -1px;
+:root {
+  --accent-color: #b58cff;
+  --accent-bg-color: #8d5acb;
+  --accent-fg-color: #ffffff;
+  --window-bg-color: #09070d;
+  --window-fg-color: #eee6f7;
+  --view-bg-color: #060509;
+  --view-fg-color: #eee6f7;
+  --headerbar-bg-color: #100b17;
+  --headerbar-fg-color: #eee6f7;
+  --sidebar-bg-color: #100b17;
+  --sidebar-fg-color: #d8c9e9;
+  --card-bg-color: #17101f;
+  --card-fg-color: #eee6f7;
+  --popover-bg-color: #17101f;
+  --popover-fg-color: #eee6f7;
+  --dialog-bg-color: #100b17;
+  --dialog-fg-color: #eee6f7;
 }

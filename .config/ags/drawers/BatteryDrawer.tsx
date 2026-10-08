@@ -1,13 +1,25 @@
 import app from "ags/gtk4/app"
 import { Astal, Gtk } from "ags/gtk4"
-import { createPoll } from "ags/time"
+import { createBinding, createComputed } from "ags"
+import Battery from "gi://AstalBattery"
 import GLib from "gi://GLib"
 
 const { TOP, RIGHT } = Astal.WindowAnchor
 
 export default function BatteryDrawer(gdkmonitor: any) {
-  const info = createPoll("  N/A", 10000,
-    `sh -c 'upower -i $(upower -e | grep BAT 2>/dev/null) 2>/dev/null | awk -F":\\\\t*" "/percentage/{p=\\$2} /state/{s=\\$2} /time to (empty|full)/{t=\\$2} END{printf \"  %s  |  %s  |    %s\", p?p:\"?\", s?s:\"?\", t?t:\"N/A\"}"'`)
+  const battery = Battery.Device.get_default()
+  const percentage = createBinding(battery, "percentage")
+  const state = createBinding(battery, "state")
+  const empty = createBinding(battery, "timeToEmpty")
+  const full = createBinding(battery, "timeToFull")
+  const info = createComputed(() => {
+    const status = state()
+    const names = ["Unknown", "Charging", "Discharging", "Empty", "Fully charged", "Waiting to charge", "Waiting to discharge"]
+    const seconds = status === Battery.State.CHARGING ? full() : empty()
+    const minutes = Math.ceil(seconds / 60)
+    const remaining = seconds > 0 ? `${Math.floor(minutes / 60)}h ${minutes % 60}m` : "N/A"
+    return `${Math.round(percentage() * 100)}%  |  ${names[status] ?? "Unknown"}  |  ${remaining}`
+  })
 
   return (
     <window

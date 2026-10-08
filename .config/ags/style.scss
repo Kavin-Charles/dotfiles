@@ -12,16 +12,16 @@ window.Drawer > box {
   margin: 8px;
   padding: 12px;
   min-width: 280px;
-  border: 1px solid #45475a;
+  border: 1px solid #382447;
   border-radius: 12px;
-  background: #1c1c1c;
-  color: #cdd6f4;
+  background: rgba(9, 7, 13, 0.90);
+  color: #eee6f7;
 }
 
 .drawer-title {
   font-size: 14px;
   font-weight: bold;
-  color: #89b4fa;
+  color: #b58cff;
   margin-bottom: 8px;
 }
 
@@ -31,11 +31,11 @@ window.Drawer > box {
 }
 
 .drawer-item:hover {
-  background: #313244;
+  background: #21162e;
 }
 
 .drawer-label {
-  color: #cdd6f4;
+  color: #eee6f7;
 }
 
 .drawer-icon {
@@ -45,22 +45,22 @@ window.Drawer > box {
 button {
   padding: 6px 12px;
   border-radius: 8px;
-  background: #313244;
-  color: #cdd6f4;
+  background: #21162e;
+  color: #eee6f7;
 }
 
 button:hover {
-  background: #45475a;
+  background: #382447;
 }
 
 button.danger:hover {
   background: #f38ba8;
-  color: #1c1c1c;
+  color: rgba(9, 7, 13, 0.90);
 }
 
 button.primary:hover {
-  background: #89b4fa;
-  color: #1c1c1c;
+  background: #b58cff;
+  color: rgba(9, 7, 13, 0.90);
 }
 
 window.OSD {
@@ -71,35 +71,35 @@ window.OSD {
   margin: 8px;
   padding: 10px 16px;
   min-width: 300px;
-  border: 1px solid #45475a;
+  border: 1px solid #382447;
   border-radius: 12px;
-  background: #1c1c1c;
-  color: #cdd6f4;
+  background: rgba(9, 7, 13, 0.90);
+  color: #eee6f7;
   margin-left: 12px;
 }
 
 .osd-icon {
   font-size: 22px;
-  color: #89b4fa;
+  color: #b58cff;
   min-width: 30px;
 }
 
 .osd-bar-outer {
   min-width: 200px;
   min-height: 8px;
-  background: #313244;
+  background: #21162e;
   border-radius: 4px;
 }
 
 .osd-bar-inner {
   min-height: 8px;
-  background: #89b4fa;
+  background: #b58cff;
   border-radius: 4px;
 }
 
 .osd-percent {
   font-size: 14px;
   font-weight: bold;
-  color: #cdd6f4;
+  color: #eee6f7;
   min-width: 40px;
 }
