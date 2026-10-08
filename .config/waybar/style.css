@@ -8,67 +8,93 @@
 }
 
 window#waybar {
-    background: rgba(6, 5, 9, 0.78);
+    background: linear-gradient(90deg, rgba(19, 16, 26, 0.97), rgba(13, 12, 18, 0.94), rgba(24, 18, 33, 0.97));
     color: #eee6f7;
-    border-bottom: 1px solid #382447;
+    border-bottom: 1px solid rgba(182, 151, 216, 0.2);
 }
 
 #workspaces {
-    margin-left: 8px;
+    margin-left: 10px;
 }
 
 #workspaces button {
-    padding: 0 9px;
-    margin: 4px 1px;
-    border-radius: 4px;
+    min-width: 30px;
+    padding: 0 4px;
+    margin: 0 1px;
+    border-bottom: 2px solid transparent;
     background: transparent;
-    color: #b9a5cc;
+    color: #b6a9c5;
     box-shadow: none;
     text-shadow: none;
+    transition: background-color 160ms ease, color 160ms ease;
 }
 
 #workspaces button.empty {
-    color: #806b96;
+    color: #776d83;
 }
 
 #workspaces button:hover {
-    background: #21162e;
-    color: #eee6f7;
+    background: rgba(182, 144, 221, 0.1);
+    color: #f5efff;
 }
 
 #workspaces button.active {
-    background: #53366e;
-    color: #eee6f7;
+    background: linear-gradient(180deg, rgba(199, 166, 237, 0.03), rgba(199, 166, 237, 0.17));
+    color: #e4cfff;
+    border-bottom-color: #c7a6ed;
+    font-weight: 700;
 }
 
 #workspaces button.urgent {
-    color: #ef9a9a;
+    background: rgba(113, 59, 83, 0.35);
+    color: #ffd5dc;
+    border-bottom-color: #ff9eb1;
 }
 
 #clock {
-    padding: 0 12px;
+    margin: 5px 0;
+    padding: 0 18px;
+    border-left: 1px solid rgba(199, 166, 237, 0.25);
+    border-right: 1px solid rgba(199, 166, 237, 0.25);
+    font-weight: 600;
+    color: #ddd2eb;
 }
 
 #battery {
-    padding: 0 14px;
-    color: #cbb1ff;
+    min-width: 48px;
+    margin: 4px 10px 4px 0;
+    padding: 0 10px;
+    background: rgba(199, 166, 237, 0.08);
+    border-left: 2px solid #a687c9;
+    border-radius: 2px;
+    color: #d5b9f5;
+    font-weight: 600;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #b4d9c3;
+    border-left-color: #91bda3;
 }
 
 #battery.warning:not(.charging):not(.plugged) {
     color: #e3c484;
+    border-left-color: #e3c484;
 }
 
 #battery.critical:not(.charging):not(.plugged) {
-    color: #ef9a9a;
+    background: rgba(70, 29, 43, 0.94);
+    color: #ffb1bd;
+    border-left-color: #ffb1bd;
 }
 
 tooltip {
-    background: #100b17;
-    border: 1px solid #382447;
+    background: #17101f;
+    border: 1px solid #49335e;
     border-radius: 6px;
 }
 
 tooltip label {
     color: #eee6f7;
-    padding: 4px;
+    padding: 7px 10px;
 }
