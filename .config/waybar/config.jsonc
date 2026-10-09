@@ -11,6 +11,8 @@
     "clock"
   ],
   "modules-right": [
+    "network",
+    "bluetooth",
     "battery"
   ],
   "hyprland/workspaces": {
@@ -31,6 +33,30 @@
     "interval": 60,
     "format": "{:%a, %d %b  \u00b7  %H:%M}",
     "tooltip-format": "{:%A, %d %B %Y}"
+  },
+  "network": {
+    "interval": 10,
+    "format-wifi": "Wi-Fi {signalStrength}%",
+    "format-ethernet": "Ethernet",
+    "format-linked": "Network …",
+    "format-disconnected": "Network off",
+    "format-disabled": "Wi-Fi off",
+    "tooltip-format-wifi": "{essid} · {signalStrength}%\n{ifname} · {ipaddr}\nClick: Network Manager · Super+Ctrl+W",
+    "tooltip-format-ethernet": "{ifname} · {ipaddr}\nClick: Network Manager · Super+Ctrl+W",
+    "tooltip-format-disconnected": "Disconnected\nClick: Network Manager · Super+Ctrl+W",
+    "tooltip-format-disabled": "Wi-Fi disabled\nClick: Network Manager · Super+Ctrl+W",
+    "on-click": "/home/kavin/.local/bin/system-tui network"
+  },
+  "bluetooth": {
+    "format": "BT {status}",
+    "format-on": "BT on",
+    "format-off": "BT off",
+    "format-disabled": "BT off",
+    "format-connected": "BT {num_connections}",
+    "tooltip-format": "Bluetooth {status}\nClick: Bluetooth Manager · Super+Ctrl+B",
+    "tooltip-format-connected": "{device_enumerate}\nClick: Bluetooth Manager · Super+Ctrl+B",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "on-click": "/home/kavin/.local/bin/system-tui bluetooth"
   },
   "battery": {
     "interval": 30,

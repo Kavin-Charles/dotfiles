@@ -29,7 +29,7 @@ export default function NetworkDrawer(gdkmonitor: any) {
     >
       <box orientation={Gtk.Orientation.VERTICAL}>
         <label class="drawer-title" label="󰤨  Network" />
-        <button class="drawer-item primary" onClicked={() => execAsync("nm-connection-editor")}>
+        <button class="drawer-item primary" onClicked={() => execAsync("/home/kavin/.local/bin/system-tui network")}>
           <box><label class="drawer-icon" label="󰈀" /><label label="Open Network Manager" /></box>
         </button>
       </box>

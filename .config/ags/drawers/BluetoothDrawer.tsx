@@ -29,7 +29,7 @@ export default function BluetoothDrawer(gdkmonitor: any) {
     >
       <box orientation={Gtk.Orientation.VERTICAL}>
         <label class="drawer-title" label="󰂯  Bluetooth" />
-        <button class="drawer-item primary" onClicked={() => execAsync("blueman-manager")}>
+        <button class="drawer-item primary" onClicked={() => execAsync("/home/kavin/.local/bin/system-tui bluetooth")}>
           <box><label class="drawer-icon" label="󰂯" /><label label="Open Bluetooth Manager" /></box>
         </button>
       </box>

@@ -284,6 +284,10 @@ hl.bind(mainMod .. " + R",      hl.dsp.exec_cmd(menu))        -- app launcher
 hl.bind(mainMod .. " + V",      hl.dsp.window.float({ action = "toggle" })) -- toggle float
 hl.bind(mainMod .. " + D",      hl.dsp.exec_cmd("/home/kavin/.config/hypr/scripts/show-desktop.sh")) -- show desktop
 
+-- Floating network and Bluetooth managers
+hl.bind(mainMod .. " + CTRL + W", hl.dsp.exec_cmd("/home/kavin/.local/bin/system-tui network"))
+hl.bind(mainMod .. " + CTRL + B", hl.dsp.exec_cmd("/home/kavin/.local/bin/system-tui bluetooth"))
+
 -- Window management
 hl.bind(mainMod .. " + P",      hl.dsp.window.pseudo())       -- dwindle pseudo
 hl.bind(mainMod .. " + J",      hl.dsp.layout("togglesplit")) -- dwindle toggle split
@@ -443,6 +447,15 @@ hl.window_rule({
 })
 
 -- Glass effect: translucent for Thunar (blur comes from global decoration settings)
+hl.window_rule({
+    name = "system-manager-tuis",
+    match = { class = "^org\\.kavin\\.(Network|Bluetooth)Tui$" },
+    float = true,
+    size = { 1000, 640 },
+    center = true,
+    opacity = "1.0 1.0",
+})
+
 hl.window_rule({
     name  = "thunar-glass",
     match = { class = "thunar" },

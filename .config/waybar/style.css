@@ -60,6 +60,27 @@ window#waybar {
     color: #ddd2eb;
 }
 
+#network,
+#bluetooth {
+    margin: 4px 6px 4px 0;
+    padding: 0 10px;
+    background: rgba(199, 166, 237, 0.08);
+    border-radius: 2px;
+    color: #d5b9f5;
+}
+
+#network:hover,
+#bluetooth:hover {
+    background: rgba(199, 166, 237, 0.18);
+}
+
+#network.disconnected,
+#network.disabled,
+#bluetooth.off,
+#bluetooth.disabled {
+    color: #9989ab;
+}
+
 #battery {
     min-width: 48px;
     margin: 4px 10px 4px 0;
