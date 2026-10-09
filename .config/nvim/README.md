@@ -31,7 +31,7 @@ Surround uses mini.surround. Select text with `v`, then press `Space s "` for do
 
 File search prioritizes an exact filename or filename without its extension, then fuzzy filename matches, then matches found only in parent directories. For example, `server` ranks `server.go` above `server/handler.go`. Include `/` (such as `server/handler`) to search by path using normal FZF ranking. Fuzzy matching, smart case and extended FZF query syntax remain available.
 
-In the Oil file browser: Enter opens a file; `-` goes up; `g?` shows help; Esc closes the browser. In insert mode, the first Esc returns to normal mode and the next closes the browser. Edit names and `:w` to rename/create; changes are reviewed before they are applied.
+In the Oil file browser: `a` adds a new file entry; type its filename, then press `Ctrl s` to create it (or return to normal mode and use `:w`). Add a trailing `/` to create a folder. Enter opens a file; `-` goes up; `g?` shows help, including the new-file action; Esc closes the browser. In insert mode, the first Esc returns to normal mode and the next closes the browser. Edit names and `:w` to rename/create; changes are reviewed before they are applied.
 
 Installed language servers cover Bash, C/C++, CSS, Go, HTML, JSON, Lua, Python, Rust, TypeScript/JavaScript, Vim and YAML. They start only for matching filetypes. Lua, Python and TypeScript attachment and completion were tested. `:Mason` manages servers and formatters. Formatting is manual (`Space cf`), using an available formatter or LSP fallback. StyLua, Prettier, Ruff and shfmt are installed; gofmt and rustfmt were already available.
 

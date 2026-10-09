@@ -72,7 +72,10 @@ return {
       columns = { "icon" },
       view_options = { show_hidden = true },
       float = { border = "rounded", max_width = 100, max_height = 30 },
-      keymaps = { ["<Esc>"] = { "actions.close", mode = "n" } },
+      keymaps = {
+        ["<Esc>"] = { "actions.close", mode = "n" },
+        ["a"] = { "o", mode = "n", desc = "New file (type name, then save)" },
+      },
     },
     keys = {
       { "-", "<cmd>Oil<cr>", desc = "Browse parent directory" },
