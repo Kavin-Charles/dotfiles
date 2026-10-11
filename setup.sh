@@ -16,12 +16,15 @@ link() {
 echo "Linking dotfiles..."
 
 link "$DOTFILES/.bashrc"        "$HOME/.bashrc"
+link "$DOTFILES/.blerc"         "$HOME/.blerc"
 link "$DOTFILES/.bash_profile"  "$HOME/.bash_profile"
 link "$DOTFILES/.gitconfig"     "$HOME/.gitconfig"
 
 link "$DOTFILES/.config/hypr"           "$HOME/.config/hypr"
 link "$DOTFILES/.config/waybar"         "$HOME/.config/waybar"
 link "$DOTFILES/.config/ghostty"        "$HOME/.config/ghostty"
+link "$DOTFILES/.config/starship.toml"  "$HOME/.config/starship.toml"
+link "$DOTFILES/.config/fzf"            "$HOME/.config/fzf"
 link "$DOTFILES/.config/mako"           "$HOME/.config/mako"
 link "$DOTFILES/.config/ags"            "$HOME/.config/ags"
 link "$DOTFILES/.config/btop"           "$HOME/.config/btop"

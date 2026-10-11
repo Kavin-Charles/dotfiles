@@ -1,19 +1,34 @@
+# Obsidian Purple — shared with Hyprland, Waybar, GTK and Neovim.
 background = 09070d
 foreground = eee6f7
 cursor-color = b58cff
 selection-background = 53366e
 selection-foreground = eee6f7
 
-background-opacity = 0.86
+background-opacity = 0.94
 
-font-family = JetBrains Mono
+font-family = JetBrainsMono Nerd Font Mono
 font-size = 12
 bold-is-bright = true
+adjust-cell-height = 8%
+
+# Give the prompt and output room to breathe.
+window-padding-x = 18
+window-padding-y = 14
+window-theme = ghostty
+gtk-wide-tabs = false
+cursor-style = bar
+cursor-style-blink = false
+scrollback-limit = 20000000
+
+# Prompt navigation, directory inheritance, titles and sudo terminfo support.
+shell-integration = detect
+shell-integration-features = cursor,title,sudo
+
+# Keep the standard shortcuts; add a memorable vertical split shortcut.
+keybind = ctrl+shift+d=new_split:right
 
 # Normal palette
-
-# Bright palette
-
 palette = 0=#09070d
 palette = 1=#ef8eab
 palette = 2=#a6d9a6
@@ -22,6 +37,7 @@ palette = 4=#a990ed
 palette = 5=#b58cff
 palette = 6=#cbb1ff
 palette = 7=#d8c9e9
+# Bright palette
 palette = 8=#6f5b83
 palette = 9=#f5a6bc
 palette = 10=#bce6bc

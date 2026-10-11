@@ -1,0 +1,71 @@
+# Obsidian Purple: a single line of compact, connected segments.
+"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = false
+palette = 'obsidian'
+format = '[](accent)[ ](fg:background bg:accent)[](fg:accent bg:directory_bg)$directory[](fg:directory_bg bg:surface)$git_branch$git_commit$git_status$git_state[](surface)$cmd_duration$status $character'
+continuation_prompt = '[·](muted) '
+
+[palettes.obsidian]
+background = '#09070d'
+surface = '#21162e'
+directory_bg = '#493061'
+accent = '#b58cff'
+pale = '#eee6f7'
+lavender = '#d6beff'
+muted = '#927da6'
+rose = '#ef8eab'
+green = '#a6d9a6'
+
+[directory]
+style = 'bold fg:pale bg:directory_bg'
+format = '[  $path]($style)[$read_only]($read_only_style)[ ]($style)'
+truncation_length = 3
+truncation_symbol = '…/'
+truncate_to_repo = false
+read_only = ' '
+read_only_style = 'fg:rose bg:directory_bg'
+home_symbol = '~'
+
+[git_branch]
+symbol = ' '
+style = 'fg:lavender bg:surface'
+format = '[ $symbol$branch ]($style)'
+truncation_length = 20
+truncation_symbol = '…'
+
+[git_commit]
+style = 'fg:lavender bg:surface'
+format = '[  $hash ]($style)'
+only_detached = true
+
+[git_status]
+style = 'fg:rose bg:surface'
+format = '([$all_status$ahead_behind]($style))'
+conflicted = '!${count} '
+ahead = '↑${count} '
+behind = '↓${count} '
+diverged = '↑${ahead_count} ↓${behind_count} '
+untracked = '?${count} '
+stashed = '≡${count} '
+modified = '~${count} '
+staged = '+${count} '
+renamed = '»${count} '
+deleted = '−${count} '
+up_to_date = ''
+
+[git_state]
+style = 'bold fg:rose bg:surface'
+format = '[ $state($progress_current/$progress_total) ]($style)'
+
+[cmd_duration]
+min_time = 3000
+format = '[ $duration](muted)'
+
+[status]
+disabled = false
+format = '[ ✕ $status](rose)'
+
+[character]
+success_symbol = '[❯](bold accent)'
+error_symbol = '[❯](bold rose)'
+vimcmd_symbol = '[❮](bold green)'

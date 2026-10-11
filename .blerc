@@ -1,0 +1,50 @@
+# Obsidian Purple highlighting and quiet inline suggestions.
+bleopt highlight_syntax=1
+bleopt complete_auto_complete=1
+bleopt complete_auto_delay=200
+
+# Starship already reports errors and command duration in the prompt.
+bleopt exec_errexit_mark=
+bleopt exec_elapsed_mark=
+bleopt exec_exit_mark=
+
+ble-face -s auto_complete          'fg=#806b96,italic'
+ble-face -s syntax_command         'fg=#b58cff'
+ble-face -s command_builtin        'fg=#cbb1ff'
+ble-face -s command_builtin_dot    'fg=#cbb1ff,bold'
+ble-face -s command_alias          'fg=#b58cff'
+ble-face -s command_function       'fg=#b58cff'
+ble-face -s command_file           'fg=#b58cff'
+ble-face -s command_keyword        'fg=#d6beff,bold'
+ble-face -s syntax_quoted          'fg=#a6d9a6'
+ble-face -s syntax_quotation       'fg=#a6d9a6'
+ble-face -s syntax_escape          'fg=#e3c484'
+ble-face -s syntax_varname         'fg=#cbb1ff'
+ble-face -s syntax_param_expansion 'fg=#cbb1ff'
+ble-face -s syntax_comment         'fg=#806b96,italic'
+ble-face -s syntax_error           'fg=#ef8eab,underline'
+ble-face -s argument_option        'fg=#d6beff'
+ble-face -s filename_directory     'fg=#cbb1ff,underline'
+ble-face -s filename_executable    'fg=#a6d9a6'
+ble-face -s region                 'fg=#eee6f7,bg=#53366e'
+ble-face -s menu_complete_match    'fg=#d6beff,bold'
+ble-face -s menu_complete_selected 'fg=#eee6f7,bg=#382447'
+ble-face -s menu_filter_input      'fg=#eee6f7,bg=#53366e'
+
+# Backport Ghostty's upstream fix for ble.sh on Ghostty 1.3.1.
+# Its 133;A marker moves the cursor behind ble.sh's back, duplicating prompts.
+# Patch the loaded function before the first prompt; do nothing on fixed builds.
+# https://github.com/ghostty-org/ghostty/pull/11644
+_obsidian_ghostty_compat() {
+    declare -F __ghostty_precmd >/dev/null || return 0
+    local definition old replacement
+    definition=$(declare -f __ghostty_precmd)
+    old='builtin printf "\e]133;A;redraw=last;cl=line;aid=%s\a" "$BASHPID"'
+    replacement='if [[ -n ${BLE_VERSION-} ]]; then builtin printf "\e]133;P;k=i\a"; else builtin printf "\e]133;A;redraw=last;cl=line;aid=%s\a" "$BASHPID"; fi'
+    if [[ $definition == *"$old"* && $definition != *'${BLE_VERSION-'* ]]; then
+        definition=${definition/"$old"/"$replacement"}
+        eval "$definition"
+    fi
+    blehook PRECMD-='_obsidian_ghostty_compat'
+}
+blehook PRECMD!='_obsidian_ghostty_compat'
