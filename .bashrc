@@ -97,3 +97,6 @@ fi
 
 # Attach only after all prompt and completion hooks have been configured.
 [[ ! ${BLE_VERSION-} ]] || ble-attach
+
+# AI: Obsidian Purple Aider launcher
+alias ai='/home/kavin/Projects/ai/scripts/aider.sh'
